@@ -7,12 +7,12 @@ public class Building : MonoBehaviour
     public GameObject[] Planks;
     public GameObject Enemy;
 
-    public float Plus_x = 1.7f; // ¿·Ä­ ÀÌµ¿½Ã ´õÇØ¾ß ÇÒ xÃàÀÇ Å©±â
-    public float Plus_y = 2.12f; // À§·Î ÀÌµ¿½Ã ´õÇØ¾ß ÇÒ yÃàÀÇ Å©±â
+    public float Plus_x = 1.7f; // ì˜†ì¹¸ ì´ë™ì‹œ ë”í•´ì•¼ í•  xì¶•ì˜ í¬ê¸°
+    public float Plus_y = 2.12f; // ìœ„ë¡œ ì´ë™ì‹œ ë”í•´ì•¼ í•  yì¶•ì˜ í¬ê¸°
 
     AngryGameMananger angry;
 
-    public int Max_Length = 5; // ÃÖ´ë °¡·ÎÀÇ ±æÀÌ
+    public int Max_Length = 5; // ìµœëŒ€ ê°€ë¡œì˜ ê¸¸ì´
     int floor = 0; 
 
     Vector2 StartPos = new Vector2(0, -1.89f);
@@ -20,17 +20,15 @@ public class Building : MonoBehaviour
     private void Start()
     {
         angry = GetComponent<AngryGameMananger>();
-
-        Building_Porcess();
     }
 
-    public void Building_Porcess() // Àû ±¸Á¶¹° »ı¼º ·ÎÁ÷
+    public void Building_Porcess() // ì  êµ¬ì¡°ë¬¼ ìƒì„± ë¡œì§
     {
-        int w = Random.Range(5, Max_Length); // °¡·Î Ä­ÀÇ °¹¼ö
-        int Enemy_loc = Random.Range(0 , w); // ÀûÀ» ³õÀ» À§Ä¡ 
+        int w = Random.Range(5, Max_Length); // ê°€ë¡œ ì¹¸ì˜ ê°¯ìˆ˜
+        int Enemy_loc = Random.Range(0 , w); // ì ì„ ë†“ì„ ìœ„ì¹˜ 
 
-        int ori_w = w; // ÃşÀÌ ¹Ù²î±â ÀüÀÇ ±æÀÌ
-        int floor_dif = 0; // ÇöÀç Ãş°ú ¾Æ·¡ÃşÀÇ ±æÀÌ Â÷ÀÌ
+        int ori_w = w; // ì¸µì´ ë°”ë€Œê¸° ì „ì˜ ê¸¸ì´
+        int floor_dif = 0; // í˜„ì¬ ì¸µê³¼ ì•„ë˜ì¸µì˜ ê¸¸ì´ ì°¨ì´
 
         for (int i = 0 ; i < 3 ; i++)
         {
@@ -41,7 +39,7 @@ public class Building : MonoBehaviour
 
             if(i != 2)
             {
-                floor_dif += ori_w - w; // floor_dif = °¢ Ä­ÀÇ Â÷ÀÌ °¹¼ö
+                floor_dif += ori_w - w; // floor_dif = ê° ì¹¸ì˜ ì°¨ì´ ê°¯ìˆ˜
                 ori_w = w;
             }
 
@@ -53,11 +51,11 @@ public class Building : MonoBehaviour
 
     }
 
-    void Floor_Set(int Length , int floor , int Enemy_loc , int floor_dif) // ÃÖ´ë °¡·Î ±æÀÌ , ÇöÀç ÃşÀÇ °ªÀ» ¹Ş¾Æ ¿Â´Ù , ÀûÀ» ¼ÒÈ¯ÇÒ Ä­ÀÇ °ª , Ä­ÀÇ Â÷ÀÌ¸¦ ¹Ş¾Æ ¿Â´Ù
+    void Floor_Set(int Length , int floor , int Enemy_loc , int floor_dif) // ìµœëŒ€ ê°€ë¡œ ê¸¸ì´ , í˜„ì¬ ì¸µì˜ ê°’ì„ ë°›ì•„ ì˜¨ë‹¤ , ì ì„ ì†Œí™˜í•  ì¹¸ì˜ ê°’ , ì¹¸ì˜ ì°¨ì´ë¥¼ ë°›ì•„ ì˜¨ë‹¤
     {
-        // pos = (½ÃÀÛ ÁöÁ¡) + (¿Ã¶ó°¥ ³ôÀÌ * ÇöÀç Ãş) + ((°¡·Î ÀÌµ¿ °Å¸® / 2) * ÇöÀç Ãş°ú ¾Æ·¡ÃşÀÌ Â÷ÀÌ)
+        // pos = (ì‹œì‘ ì§€ì ) + (ì˜¬ë¼ê°ˆ ë†’ì´ * í˜„ì¬ ì¸µ) + ((ê°€ë¡œ ì´ë™ ê±°ë¦¬ / 2) * í˜„ì¬ ì¸µê³¼ ì•„ë˜ì¸µì´ ì°¨ì´)
         Vector2 pos = StartPos + new Vector2(0, Plus_y * floor) + new Vector2((Plus_x / 2) * floor_dif , 0); 
-        GameObject loc; // ÀûÀ» ¼ÒÈ¯ÇÒ À§Ä¡
+        GameObject loc; // ì ì„ ì†Œí™˜í•  ìœ„ì¹˜
 
         for (int i = 0; i < Length ; i++)
         {
